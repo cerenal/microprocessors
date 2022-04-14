@@ -1,0 +1,28 @@
+;Find the sum of the first 8 Fibonacci numbers
+
+mov BX,1   ;a
+mov CX,6 
+mov dx,1     ;b
+  
+ ;1 1
+ ;toplam 2  
+ ; sayi2 = sayi1
+ ;sayi1 = toplam
+ ; 
+TEK:  
+mov [100h],bx
+add [100h],dx
+add ax,[100h]          
+mov  BX,DX   
+mov  DX, [100h]     
+
+
+
+   
+LOOP TEK
+
+ 
+MOV BX, 10  
+
+DIV Bl        
+ret
