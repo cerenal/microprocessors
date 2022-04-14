@@ -1,0 +1,75 @@
+
+
+;Find the largest and smallest number. Divide large number by small number, find the factorial of the remainder
+org 100h  ;dataword yerine 800h yaparsın ya da array tanimini sonda yaparsin
+
+; add your code here  uzun olacak glb
+arr db 11,9,18,20,54,45,13,38,5,25 
+mov ax, 700h   ;farkli salla
+mov di, 0h  ;source index dolayli adreslemede kullanilir, hep bellege gitme diye
+mov bp, 800h ;sag tarafta kullanilir
+mov cx,10
+    ; c+= a c-> odev a-> source
+atama:
+     mov al, arr+di   ;arrayin bekledigi noktadn +0 veriyi 900h a verdi
+     mov [bp][di],al  ;bp +di 
+     inc di           ;ayni yere kaydetme diye
+     loop atama
+
+mov cx,10
+mov di,0
+mov al,[bp][di]
+
+find_small:
+
+     mov bl, [bp][di]    ;al bl ayni olsun
+     cmp al,bl
+     jl assign_small
+     mov al,0
+     add al,bl
+     assign_small:
+            inc di  
+     dec cx
+     jnz   find_small
+     
+mov [200h], al
+mov cx,10
+mov di,0
+mov al,[bp][di]
+     ;cx i bir kez azaltip konrol edebilirsin
+find_large:
+            mov bl, [bp][di]  
+            cmp al,bl
+            ja assign_large
+             mov al,0
+             add al,bl
+            assign_large:
+                inc di
+           
+            loop find_large
+mov [210h], al
+mov ax,0
+mov ax,[210h]
+mov bx,[200h]
+div bx
+mov cx, dx
+mov di,0 
+ 
+;mov [100h],0001 
+
+mov ax, [600h] 
+mov ax,1
+mov bx,1
+
+find_fac:
+        mul  cx
+          
+        loop   find_fac
+          
+ret
+
+      
+
+
+
+
