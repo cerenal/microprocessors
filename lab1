@@ -1,0 +1,17 @@
+
+;Add the first and second numbers and subtract the third number. Assign result to address 400h
+mov ax, 200h  
+mov ds,ax
+
+mov [300h], 23  
+mov [302h], 5
+mov [304h], 7
+
+mov bl, [300h]
+mov bh, [302h] 
+mov cl, [304h]  
+add bl, bh
+sub bl, cl
+mov ax, 100h  
+mov ds,ax
+mov [400h], bl
